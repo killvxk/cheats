@@ -1,0 +1,18 @@
+Address Resolution Protocol  
+
+enable IP forwarding 
+# echo 1 > /proc/sys/net/ipv4/ip_forward
+
+$ arpspoof
+
+arpspoof -i <interface> -t <target> -r <host>
+arpspoof -i wlan0 -t 192.168.5.6 -r hostIP
+
+
+
+
+
+
+
+
+

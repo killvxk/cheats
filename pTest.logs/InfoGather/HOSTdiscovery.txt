@@ -1,0 +1,96 @@
+root in ~
+⚡ fping -h 
+
+root in ~
+⚡ fping -a 192.168.1.208
+
+root in ~
+⚡ fping -A 192.168.1.208
+
+root in ~
+⚡ fping -A 192.168.1.208 -r 0 
+
+root in ~
+⚡ fping -A 192.168.1.208 -e 
+
+root in ~
+⚡ fping -q -a -g 192.168.1.1/24 -r 0 -e 
+
+root in ~
+⚡ hping3 -h 
+
+root in ~
+⚡ sudo hping3 -S 192.168.1.202 -c 3 
+
+root in ~
+⚡ sudo hping3 -S 192.168.1.208 -c 3 
+
+root in ~
+⚡ sudo hping3 -S 192.168.1.208 -c 3 
+
+root in ~
+⚡ sudo hping3 -S 192.168.1.208 -c 3 
+
+root in ~
+⚡ sudo hping3 -S 192.168.1.208 -p 80 -c 3 
+
+root in ~
+⚡ sudo hping3 -F 192.168.1.208 -p 80 -c 3 
+
+root in ~
+⚡ sudo hping3 -U 192.168.1.208 -c 3 
+
+root in ~
+⚡ sudo hping3 -X 192.168.1.208 -c 3 
+
+root in ~
+⚡ sudo hping3 -Y 192.168.1.208 -c 3 
+
+root in ~
+⚡ sudo hping3 -F -P -U  192.168.1.208 -c 3 
+
+root in ~
+⚡ sudo hping3 -1 192.168.1.x --rand-dest -I eth0
+
+root in ~
+⚡ sudo hping3 -1 192.168.195.x --rand-dest -I eth0
+
+root in ~
+⚡ sudo hping3 -1 192.168.1.19x --rand-dest -I eth0
+
+root in ~
+⚡ sudo hping3 -1 192.168.1.20x --rand-dest -I eth0
+
+root in ~
+⚡ sudo hping3 -1 192.168.1.x --rand-dest -I eth0
+
+root in ~
+⚡ nmap -sn 192.168.1.208
+
+root in ~
+⚡ nmap -sn 192.168.1.208--disable-arp-ping
+
+root in ~
+⚡ nmap -sn 192.168.1.208 --disable-arp-ping
+
+root in ~
+⚡ nmap -sn -PS53 192.168.1.208 --disable-arp-ping 
+
+root in ~
+⚡ nmap -sn -PA 192.168.1.208 --disable-arp-ping 
+
+root in ~
+⚡ nmap -sn -PU 192.168.1.208 --disable-arp-ping 
+
+root in ~
+⚡ nmap -sn -PY 192.168.1.208 --disable-arp-ping 
+
+root in ~
+⚡ nmap -sn -PM 192.168.1.208 --disable-arp-ping 
+
+root in ~
+⚡ nmap -sn -PP 192.168.1.208 --disable-arp-ping 
+
+root in ~
+⚡ nmap -sn -PS 192.168.1.1/24 --disable-arp-ping 
+

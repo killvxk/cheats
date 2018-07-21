@@ -1,0 +1,61 @@
+##NETBIOS 
+
+Lan sharing 
+
+
+
+$ COMMANDS 
+
+nbtstat  
+nbtstat -A victim ip 
+<20> valid one 
+net view victimip
+net use victimip/share
+/?
+net view victimip/share /DELETE   || to delete it off course ;P
+
+
+
+## RECOMENDED TOOLS 
+
+sid sid2user , Winfingerprint, MiB Browser, 
+
+
+
+
+## SNMP     || Simple Network Manager Protocol 
+
+
+4 tupous entolon : 
+
+* Read         || Monitor device's
+* Write        || Configuring and change devide settings 
+* Trap          || 'Traping' events and reported back to monitoring system 
+* Traversal Operations               || What variables a device supports 
+
+
+
+$ O snmp trexei sth 161_udp kai kanei trapping sthn 162_udp
+
+ Exei mono 4 operators : 
+ * Get
+ * GetNext
+ * Set
+ * Trap
+ 
+ 
+ 
+ $ SNMP ATTACK 
+ 
+ * Flooding => DOS pou perilambanei kai SNMP Agent spoofing kai rixnontas xiliades TRAP'S mexri na einai mhn mprorei na leitourghsh sosta 
+* SNMPv1 +v2 moirazontai se clear text morfh olh thn epikoinonia , 'easy creds sniff' ;P 
+
+
+
+## TOOLS 
+
+* SnmpWalk
+* Snmpenum      || linux 
+* Onesixtyone   || linux 
+
+

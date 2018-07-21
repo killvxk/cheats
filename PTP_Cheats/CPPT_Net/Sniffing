@@ -1,0 +1,58 @@
+## SNIFING 
+
+$ TYPES
+
+* Passive Snifing
+* Active Snifing 
+    1. Mac Flooding
+    2. ARP spoofing                 || pio stealth apo to folloding tis MAC 
+            a) MITM                 || Anamesa se 2 host kai 
+            b) Getaway Poisoning    ||  Apeuthias Getaway 
+            
+
+
+
+## TOOLS 
+
+
+* dsniff    || not suported   
+
+
+$ Passive Sniffing
+    1. Filesnarf
+    2. Webspy
+    3. Mailsnarf
+    4. Msgsanrf
+    5. Urlsnarf
+    6. Websnarf
+
+$ Active Sniffing
+
+    1. Arpspoof
+    2. Dnsspoof
+    3. Macof
+
+
+$ Man_In_The_Middle
+    1. Sghmitm
+    2. Webmitm
+
+
+* Wireshark ,  Tcpdump , Ntop , Ettercap , Cain , mitmf , sslstrip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

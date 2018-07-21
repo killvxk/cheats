@@ -1,0 +1,8 @@
+## Simple how to use parallel 
+cat "list" | parallel -j 10 finger {}@192.168.1.209 | gren -v "dontShow"
+
+cat list | parallel => diavazei kai stelnei tin lista sto parallel
+
+-j finger {}@192.168.1.209 => ektelei 10 task's* sto antistoixo server
+
+finger => finger server

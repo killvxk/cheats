@@ -1,0 +1,1 @@
+hydra -L user.list -P pass.list $IP ssh [protocol] 

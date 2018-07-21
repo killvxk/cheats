@@ -1,0 +1,89 @@
+⚡ hping3 -S -p 80 -c 3 192.168.1.208 
+
+⚡ hping3 -S --scan 1-1000,2005,2007 192.168.1.208
+
+⚡ hping3 -S --scan all 192.168.1.208
+
+⚡ hping3 -S --scan known 192.168.1.208
+
+⚡ hping3 -S --scan '80,445,500-550,!525' 192.168.1.208
+
+⚡ hping3 -2 --scan 1-1000 192.168.1.208
+
+⚡ hping3 -F -P U 192.168.1.208 -c 3 
+
+⚡ hping3 --scan 1-1000 192.168.1.208
+
+## IDLE 
+
+⚡ nmap -sS 192.168.1.202 -d -p 80 -Pn
+
+⚡ nmap -sS 192.168.1.202 -d -p 80 
+
+⚡ nmap -sS 192.168.1.202 -d -p 80 -n
+
+⚡ nmap -sT 192.168.1.202 -F
+
+⚡ nmap -sU 192.168.1.202 -p 21,53,111,80,553
+
+⚡ nmap -sN 192.168.1.202 -p 21,53,111,80,553  
+
+⚡ nmap -sX 192.168.1.202 --top-ports 
+
+⚡ nmap -sX 192.168.1.202 --top-ports 200
+
+⚡ nmap -sF 192.168.1.202 --top-ports 200
+
+⚡ nmap --scanflags URG 192.168.1.202
+
+⚡ nmap --script-help
+
+⚡ nmap --script whois-domain example.org -sn 
+
+⚡ nmap --script smb-enum-shares 192.168.1.208 -p 445 
+
+⚡ nmap --script default(category) 192.168.1.208 
+
+⚡ nmap -f 192.168.1.202 -n -p 80 --disable-arp-ping -Pn
+
+⚡ nmap -f -sS 192.168.1.202 -p 80,443,445,3306,135 --disable-arp-ping -Pn -n
+
+⚡ nmap -f -sS 192.168.1.202 -n -p 80 --disable-arp-ping -Pn
+
+⚡ nmap -f -sS 192.168.1.202 -n -p 80 --disable-arp-ping -Pn
+
+⚡ nmap -f -sS 192.168.1.202 -p 80 --disable-arp-ping --data-length 48 -n
+
+⚡ nmap -f -f -sS 192.168.1.202 -p 80 --disable-arp-ping -n -Pn
+
+⚡ nmap -p 80 -D 192.168.1.202,ME,192.168.1.208 192.168.1.1
+
+⚡ nmap --source-port 53 192.168.1.1 -s
+
+⚡ nmap -sS --data-length 10 -p 21 192.168.1.202
+
+⚡ nmap --spoof-mac apple 192.168.1.202 -p 80 --disable-arp-ping -Pn -n 
+
+⚡ nmap --spoof-mac 0 192.168.1.202 -p 80 --disable-arp-ping -Pn -n 
+
+⚡ nmap --spoof-mac 00:11:22:33:44:55 192.168.1.202 -p 80 --disable-arp-ping -Pn -n 
+
+⚡ nmap -iL list -sS -p 80,21,23,443,135,5555,3306,445,22,8080,9090,9091 --randomize-hosts
+
+⚡ nmap -iL list -sS -p 80,21,23,443,135,5555,3306,445,22,8080,9090,9091 --randomize-hosts -T 2
+
+⚡ hping3 -S --scan 80,443,445,21,22,3306 192.168.1.202 -i u10
+
+⚡ hping3 -1 --rand-dest 192.168.1.x -I eth0
+
+⚡ hping3 -S -p 21 --data 24 192.168.1.202
+
+⚡ hping3 -S -s 53 --scan known 192.168.1.1
+
+⚡ hping3 -a 192.168.1.208  -S -p 80 192.168.1.202 -c 3
+
+⚡ hping3 --rand-source -S -p 80 192.168.1.202 -c 3
+
+⚡ hping3 -S -f -p 80 192.168.1.202 -c 1
+
+

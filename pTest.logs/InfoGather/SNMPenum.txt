@@ -1,0 +1,18 @@
+⚡ snmpwalk -v 2c -C public 192.168.1.210
+
+⚡ snmpwalk -v 2c -c public 192.168.1.210
+
+⚡ snmpwalk -v 2c -c public 192.168.1.210 hrSWInstalledName
+
+⚡ snmpwalk -v 2c -c public 192.168.1.210 hhrMemorySize
+
+⚡ snmpwalk -v 2c -c public 192.168.1.210 sysContact
+
+⚡ snmpset -v 2c -c public 192.168.1.210 sysContact.0 s els
+
+⚡ nmap -sU -p 161 --script snmp-win64-services 192.168.1.210 
+
+⚡ nmap -sU -p 161 --script snmp-brute 192.168.1.210
+
+⚡ nmap -sU -p 161 --script snmp-win32-users 192.168.1.210
+

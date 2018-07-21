@@ -1,0 +1,25 @@
+## Basic BOF explaination 
+
+Vasikes enoies 
+
+$ STACK :
+
+H domh/kataskeuh pou euthinete gia thn metafora dedomenon.
+Dedomena mporoun na eisaxthoun h na aferethoun mono apo to pano meros tis STOIBAS
+LastInFirstOut (LIFO)
+
+$ PUSH
+
+Methodos eisagoghs dedomenon sto STACK 
+
+$ POP 
+
+Methodos e3agoghs dedomenon apo to STACK (exagei to teteleutaio stoixei tou STACK) 
+
+
+## Eisagontas dedomena sto STACK ( in c ) 
+
+int A[3] = {2, 3, 4};    /* dhmiourgh ena stack 3 bytes (2,3,4) shmeiosh to byte (4)
+                         /* einai to proto pou eisagete ara to teleutaio byte sto stack 
+
+

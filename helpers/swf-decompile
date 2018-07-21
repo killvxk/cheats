@@ -1,0 +1,2 @@
+swfmill swf2xml file.swf file.xml
+swfmill xml2swf file.xml file.swf

@@ -1,0 +1,58 @@
+$ NetBIOS 
+
+
+
+Mporei na prosferei plirofories opos : 
+
+* Host Names
+* NetBios name 
+* Domain
+* Network shares
+
+common porst : 137udp, 138udp, 139tcp  (135, 139, 445)
+
+====================================================================================
+$$ Null Sessions
+
+einai to remote exploitarisma tou Windows Share (smb) 
+
+* Windows 
+
+nbtstat /? 
+nbtstat -A hostip
+
+net view hostip
+net use \\hostip\shareURI "/u:"   
+
+* Linux 
+
+nmblookup -A hostip
+smbclient -L //hostip -N    || enumerate the shares also 
+sbmclient //hostip/shareURI -N 
+
+* enum4linux (enumeration)
+ 
+
+enum4linux -n hostip
+enym4linux -P hostip (enumerate pass policy)
+enum4linux -S hostip (enumerate shares)
+
+samrdump.py || akoma ena tool apo to impacet
+smb-enum-shares || nmap script
+smb-enum-shares || 
+smb-brute       || bruteforcing username+pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
